@@ -14,7 +14,7 @@ namespace Api.UnitTests
         [TestCase(1, 51)]
         [TestCase(-1, 10)]
         [TestCase(1, -1)]
-        public async Task CannotQueryInvalidPaginationParameters(
+        public async Task CannotQueryWithInvalidPaginationParameters(
             int pageNumber,
             int pageSize)
         {

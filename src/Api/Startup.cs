@@ -1,9 +1,6 @@
 using System.Reflection;
 using Api.Configuration;
 using Api.Middleware.Health;
-using Api.Models;
-using Api.Validation;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
