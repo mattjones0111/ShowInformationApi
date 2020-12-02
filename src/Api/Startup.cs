@@ -1,3 +1,4 @@
+using Api.Configuration;
 using Api.Middleware.Health;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,8 @@ namespace Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
             });
+
+            services.AddShowInformationProvider();
         }
 
         public void Configure(IApplicationBuilder app)
