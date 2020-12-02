@@ -1,3 +1,4 @@
+using Api.Middleware.Health;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,8 @@ namespace Api
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseApiHealthChecks();
+
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
 
