@@ -1,0 +1,23 @@
+﻿CREATE TABLE [dbo].[Show]
+(
+	Id INT NOT NULL,
+	[Name] VARCHAR(MAX) NOT NULL,
+	CONSTRAINT PK_Show_Id PRIMARY KEY (Id)
+)
+
+CREATE TABLE [dbo].[Person]
+(
+	Id INT NOT NULL,
+	[Name] VARCHAR(MAX) NOT NULL,
+	Birthday DATETIME NOT NULL,
+	CONSTRAINT PK_Person_Id PRIMARY KEY (Id)
+)
+
+CREATE TABLE [dbo].[CastMember]
+(
+	ShowId INT NOT NULL,
+	PersonId INT NOT NULL,
+	CONSTRAINT PK_ShowId_PersonId PRIMARY KEY (ShowId, PersonId),
+	CONSTRAINT FK_Show_ShowId FOREIGN KEY (ShowId) REFERENCES Show (Id),
+	CONSTRAINT FK_Show_PersonId FOREIGN KEY (PersonId) REFERENCES Person (Id)
+)

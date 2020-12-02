@@ -1,5 +1,6 @@
 using System.Reflection;
 using Api.Configuration;
+using Api.Data;
 using Api.Middleware.Health;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -20,7 +21,8 @@ namespace Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
+            services
+                .AddMvc()
                 .AddFluentValidation(configure =>
                 {
                     configure.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -47,6 +49,8 @@ namespace Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UpgradeDatabase(Configuration["ConnectionStrings:Database"]);
         }
     }
 }
