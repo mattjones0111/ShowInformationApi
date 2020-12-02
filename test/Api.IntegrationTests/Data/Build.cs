@@ -13,7 +13,22 @@ namespace Api.IntegrationTests.Data
                 Name = "The Jim Smith Show",
                 Cast = new[] {new CastMember
                 {
-                    Id = 1,
+                    Id = 2,
+                    Name = "Jim Smith",
+                    Birthday = new DateTime(1977, 2, 12)
+                }}
+            };
+        }
+
+        public static Show InvalidShow()
+        {
+            return new Show
+            {
+                Id = 3,
+                Name = string.Empty,
+                Cast = new[] {new CastMember
+                {
+                    Id = 4,
                     Name = "Jim Smith",
                     Birthday = new DateTime(1977, 2, 12)
                 }}

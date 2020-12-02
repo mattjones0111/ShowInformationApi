@@ -49,6 +49,14 @@ namespace Api.IntegrationTests
             Assert.AreEqual(castMember.Birthday, actual.Cast[0].Birthday);
         }
 
+        [Test]
+        public async Task CannotPutInvalidShow()
+        {
+            Show expected = Build.InvalidShow();
+
+            await PutAsync(expected, $"shows/{expected.Id}", HttpStatusCode.BadRequest);
+        }
+
         private async Task<T> GetAsync<T>(string url)
         {
             HttpResponseMessage response = await _client.GetAsync(url);
@@ -64,7 +72,10 @@ namespace Api.IntegrationTests
             return result;
         }
 
-        private async Task PutAsync<T>(T @object, string url)
+        private async Task PutAsync<T>(
+            T @object,
+            string url,
+            HttpStatusCode expectedStatus = HttpStatusCode.NoContent)
         {
             string requestJson = JsonSerializer.Serialize(
                 @object,
@@ -74,7 +85,7 @@ namespace Api.IntegrationTests
                 url,
                 new StringContent(requestJson, Encoding.UTF8, "application/json"));
 
-            Assert.AreEqual(HttpStatusCode.NoContent, message.StatusCode);
+            Assert.AreEqual(expectedStatus, message.StatusCode);
         }
 
         [OneTimeTearDown]

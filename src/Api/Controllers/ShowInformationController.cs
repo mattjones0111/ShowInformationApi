@@ -33,6 +33,11 @@ namespace Api.Controllers
         [HttpPut("shows/{id:int}")]
         public async Task<IActionResult> Put([FromBody] Show show)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             await _provider.PutAsync(show);
 
             return NoContent();
