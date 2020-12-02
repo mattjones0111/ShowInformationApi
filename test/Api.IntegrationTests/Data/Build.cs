@@ -20,7 +20,7 @@ namespace Api.IntegrationTests.Data
             };
         }
 
-        public static Show InvalidShow()
+        public static Show InvalidShow_NoName()
         {
             return new Show
             {
@@ -30,6 +30,21 @@ namespace Api.IntegrationTests.Data
                 {
                     Id = 4,
                     Name = "Jim Smith",
+                    Birthday = new DateTime(1977, 2, 12)
+                }}
+            };
+        }
+
+        public static Show InvalidShow_NoCastMemberName()
+        {
+            return new Show
+            {
+                Id = 3,
+                Name = "The Jim Smith Show",
+                Cast = new[] {new CastMember
+                {
+                    Id = 4,
+                    Name = null,
                     Birthday = new DateTime(1977, 2, 12)
                 }}
             };

@@ -50,9 +50,17 @@ namespace Api.IntegrationTests
         }
 
         [Test]
-        public async Task CannotPutInvalidShow()
+        public async Task CannotPutShowWithInvalidName()
         {
-            Show expected = Build.InvalidShow();
+            Show expected = Build.InvalidShow_NoName();
+
+            await PutAsync(expected, $"shows/{expected.Id}", HttpStatusCode.BadRequest);
+        }
+
+        [Test]
+        public async Task CannotPutShowWithInvalidCastMemberName()
+        {
+            Show expected = Build.InvalidShow_NoCastMemberName();
 
             await PutAsync(expected, $"shows/{expected.Id}", HttpStatusCode.BadRequest);
         }
