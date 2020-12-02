@@ -9,7 +9,7 @@ namespace Api.Adapters
     /// <summary>
     ///    A show information provider that uses in-memory storage.
     /// </summary>
-    internal sealed class InMemoryShowInformationRepository : IShowInformationRepository
+    public sealed class InMemoryShowInformationRepository : IShowInformationRepository
     {
         private static readonly Dictionary<int, Show> Storage =
             new Dictionary<int, Show>();

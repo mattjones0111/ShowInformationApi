@@ -18,6 +18,11 @@ namespace Api.Controllers
         [HttpGet("shows")]
         public async Task<IActionResult> Get(int pageNumber = 1, int pageSize = 10)
         {
+            if (pageNumber < 1 || pageSize < 1 || pageSize > 50)
+            {
+                return BadRequest();
+            }
+
             IEnumerable<Show> result = await _provider.GetShowsAsync(
                 pageNumber,
                 pageSize);
