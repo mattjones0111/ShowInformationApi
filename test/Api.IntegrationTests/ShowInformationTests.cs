@@ -60,10 +60,32 @@ namespace Api.IntegrationTests
                 await PutAsync(s, $"shows/{s.Id}");
             }
 
+            // act
             IEnumerable<Show> actual = await GetAsync<IEnumerable<Show>>(
                 "shows?pageNumber=1&pageSize=10");
 
+            // assert
             Assert.AreEqual(10, actual.Count());
+        }
+
+        [Test]
+        public async Task CanGetShowInformationWithSortedCast()
+        {
+            // arrange
+            Show input = Build.UnsortedCast();
+            input.Id = 1;
+
+            await PutAsync(input, "shows/1");
+
+            // act
+            IEnumerable<Show> fromApi = await GetAsync<IEnumerable<Show>>("shows");
+
+            // assert
+            Show actual = fromApi.Single(x => x.Id == 1);
+
+            CastMemberBirthdayComparer comparer = new CastMemberBirthdayComparer();
+
+            Assert.IsTrue(actual.Cast.AreInDescendingOrder(comparer));
         }
 
         [Test]

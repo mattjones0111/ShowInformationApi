@@ -8,6 +8,36 @@ namespace Api.IntegrationTests.Data
 {
     internal static class Build
     {
+        public static Show UnsortedCast()
+        {
+            return new Show
+            {
+                Id = Any.PositiveInt32(),
+                Name = Any.String(),
+                Cast = new[]
+                {
+                    new CastMember
+                    {
+                        Birthday = new DateTime(1977,2,12),
+                        Id = Any.PositiveInt32(),
+                        Name = Any.String()
+                    },
+                    new CastMember
+                    {
+                        Birthday = new DateTime(1980,2,12),
+                        Id = Any.PositiveInt32(),
+                        Name = Any.String()
+                    },
+                    new CastMember
+                    {
+                        Birthday = new DateTime(1983,2,12),
+                        Id = Any.PositiveInt32(),
+                        Name = Any.String()
+                    }
+                }
+            };
+        }
+
         public static IEnumerable<Show> RandomShows(int count)
         {
             return Enumerable.Range(1, count)

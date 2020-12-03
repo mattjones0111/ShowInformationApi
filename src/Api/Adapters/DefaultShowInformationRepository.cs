@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Api.Models;
 using Api.Ports;
@@ -26,6 +27,10 @@ namespace Api.Adapters
 
         public Task PutAsync(Show show)
         {
+            show.Cast = show.Cast
+                .OrderByDescending(x => x.Birthday)
+                .ToArray();
+
             return _documentStore.SaveAsync(show.Id, show);
         }
     }
