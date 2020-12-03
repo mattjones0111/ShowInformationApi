@@ -4,12 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.Configuration
 {
-    public static class ProviderExtensions
+    public static class DocumentStoreExtensions
     {
-        public static IServiceCollection AddShowInformationProvider(
+        public static IServiceCollection AddInMemoryDocumentStore(
             this IServiceCollection services)
         {
-            services.AddTransient<IShowInformationRepository, DefaultShowInformationRepository>();
+            services.AddSingleton<IStoreDocuments, InMemoryDocumentStore>();
 
             return services;
         }

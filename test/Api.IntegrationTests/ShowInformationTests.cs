@@ -50,6 +50,23 @@ namespace Api.IntegrationTests
         }
 
         [Test]
+        public async Task CanRetrievePagedShowInformation()
+        {
+            // arrange
+            IEnumerable<Show> shows = Build.RandomShows(100);
+
+            foreach(Show s in shows)
+            {
+                await PutAsync(s, $"shows/{s.Id}");
+            }
+
+            IEnumerable<Show> actual = await GetAsync<IEnumerable<Show>>(
+                "shows?pageNumber=1&pageSize=10");
+
+            Assert.AreEqual(10, actual.Count());
+        }
+
+        [Test]
         public async Task CannotPutShowWithInvalidName()
         {
             Show expected = Build.InvalidShow_NoName();

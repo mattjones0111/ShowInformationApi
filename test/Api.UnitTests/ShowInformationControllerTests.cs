@@ -20,7 +20,8 @@ namespace Api.UnitTests
         {
             ShowInformationController subject =
                 new ShowInformationController(
-                    new InMemoryShowInformationRepository());
+                    new DefaultShowInformationRepository(
+                        new InMemoryDocumentStore()));
 
             IActionResult result = await subject.Get(pageNumber, pageSize);
 

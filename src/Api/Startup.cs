@@ -34,6 +34,7 @@ namespace Api
             });
 
             services.AddShowInformationProvider();
+            services.AddInMemoryDocumentStore();
         }
 
         public void Configure(IApplicationBuilder app)
