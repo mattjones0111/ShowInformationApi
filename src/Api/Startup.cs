@@ -34,7 +34,7 @@ namespace Api
             });
 
             services.AddShowInformationProvider();
-            services.AddInMemoryDocumentStore();
+            services.AddSqlDocumentStore(Configuration.GetConnectionString("database"));
         }
 
         public void Configure(IApplicationBuilder app)
