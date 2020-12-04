@@ -14,6 +14,8 @@ namespace Api.IntegrationTests
 
             builder.ConfigureServices(config =>
             {
+                // we need to stop the ingestor from starting during these
+                // integration tests.
                 config.Remove(
                     new ServiceDescriptor(
                         typeof(IHostedService),

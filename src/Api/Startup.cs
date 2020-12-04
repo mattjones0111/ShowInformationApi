@@ -2,7 +2,6 @@ using System.Reflection;
 using Api.Configuration;
 using Api.Data;
 using Api.Middleware.Health;
-using Api.Services;
 using Api.Services.Ingestion;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;

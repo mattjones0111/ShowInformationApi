@@ -7,6 +7,7 @@ namespace Api.Configuration
 {
     public static class DocumentStoreExtensions
     {
+        // ReSharper disable once UnusedMember.Global - retained for convenience
         public static IServiceCollection AddInMemoryDocumentStore(
             this IServiceCollection services)
         {
