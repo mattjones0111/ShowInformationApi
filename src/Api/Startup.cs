@@ -2,6 +2,8 @@ using System.Reflection;
 using Api.Configuration;
 using Api.Data;
 using Api.Middleware.Health;
+using Api.Services;
+using Api.Services.Ingestion;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -30,11 +32,18 @@ namespace Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
+                c.SwaggerDoc(
+                    "v1",
+                    new OpenApiInfo
+                    {
+                        Title = "Show Inforamtion Api",
+                        Version = "v1"
+                    });
             });
 
             services.AddShowInformationProvider();
             services.AddSqlDocumentStore(Configuration.GetConnectionString("database"));
+            services.AddTvMazeIngestor();
         }
 
         public void Configure(IApplicationBuilder app)

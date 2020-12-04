@@ -1,9 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Api.Models;
 
 namespace Api.IntegrationTests.Helpers
 {
-    public class CastMemberBirthdayComparer : IComparer<CastMember>
+    /// <summary>
+    ///    A comparer that compares <see cref="CastMember"></see> instances
+    ///    by their Birthday property.
+    /// </summary>
+    /// <remarks>
+    ///    If either of the Birthday properties have no value, then they are
+    ///    compared alphabetically by name.
+    /// </remarks>
+    public sealed class CastMemberBirthdayComparer : IComparer<CastMember>
     {
         public int Compare(CastMember x, CastMember y)
         {
@@ -22,7 +31,12 @@ namespace Api.IntegrationTests.Helpers
                 return -1;
             }
 
-            return x.Birthday.CompareTo(y.Birthday);
+            if (x.Birthday.HasValue && y.Birthday.HasValue)
+            {
+                return x.Birthday.Value.CompareTo(y.Birthday.Value);
+            }
+
+            return string.Compare(x.Name, y.Name, StringComparison.Ordinal);
         }
     }
 }
